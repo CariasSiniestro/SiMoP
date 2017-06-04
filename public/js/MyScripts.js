@@ -124,3 +124,13 @@ function ActualizarProducto($id){
     });
     $('.button-collapse').sideNav('hide');// Hide sideNav
   } 
+  //************************************************************
+  
+  $("#cat_sel").change( function() {
+      $('#spinnerProd').removeClass('hide');  
+      $('#result').load('/producto/'+$("#cat_sel option:selected").val(),function(){
+          $('#spinnerProd').addClass('hide');
+          //$('#content').show();       
+      });
+  });
+  

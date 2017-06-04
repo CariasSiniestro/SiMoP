@@ -64,7 +64,7 @@ Route::post('/medida','MedidasController@guardar');
 
 //mostrar productos
 Route::get('/productos','ProductosController@index');
-Route::get('/producto/{id}','ProductosController@show');
+Route::get('/producto/{id}','ProductosController@showPorCategoria');
 //nuevo producto
 Route::get('/producto','ProductosController@crear');
 Route::post('/producto','ProductosController@guardar');

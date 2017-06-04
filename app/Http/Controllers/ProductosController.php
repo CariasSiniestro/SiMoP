@@ -16,9 +16,9 @@ class ProductosController extends Controller
     	return view('ListProductos')->with('productos',$productos);
     }
 
-    public function show($id){
-        $producto = DB::table('productos')->select('id','name')->where('id', $id)->get();
-        dd($producto);
+    public function showPorCategoria($id){
+        $productos = DB::table('productos')->select('id','name')->where('id_categoria', $id)->get();
+        return View::make('ProductosCategoria')->with('productos', $productos)  ;
     }
 
     public function crear(){

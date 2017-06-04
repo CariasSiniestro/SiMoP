@@ -18,7 +18,7 @@
     <form method="POST" action="">
 
       <div class="input-field col l4 m6 s12">
-        <select onChange="alert('hola')">
+        <select id="cat_sel" name="cat_sel">
           <option value="0" disabled selected>Elija una categoria</option>
           <option value="todas" >Todas</option>   
           @foreach($categorias as $categoria)
