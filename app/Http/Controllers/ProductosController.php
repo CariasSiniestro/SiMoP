@@ -16,6 +16,11 @@ class ProductosController extends Controller
     	return view('ListProductos')->with('productos',$productos);
     }
 
+    public function show($id){
+        $producto = DB::table('productos')->select('id','name')->where('id', $id)->get();
+        dd($producto);
+    }
+
     public function crear(){
     	$categorias = DB::table('categorias')->select('id','name')->get();
     	$medidas = DB::table('unidad_medida')->select('id','name')->get();

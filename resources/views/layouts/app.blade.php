@@ -56,7 +56,8 @@
                 <li><a class="waves-effect" onClick="CargarDepartamentos()" href="#"><i class="material-icons">place</i>Departamentos</a></li> 
                 <li><a class="waves-effect" onClick="CargarCategorias()" href="#"><i class="material-icons">list</i>Categorias</a></li>
                 <li><a class="waves-effect" onClick="CargarPresentaciones()" href="#"><i class="material-icons">shopping_basket</i>Presentaciones</a></li>        
-                <li><a class="waves-effect" href="{{ url('/productos') }}"><i class="material-icons">shopping_cart</i>Productos</a></li>               
+                <li><a class="waves-effect" href="{{ url('/productos') }}"><i class="material-icons">shopping_cart</i>Productos</a></li> 
+                <li><a class="waves-effect" href="{{ url('/precios') }}"><i class="material-icons">shopping_cart</i>Precios</a></li>              
                 @if(Auth::check())
                 @if((Auth::user()->role)==1)
                 <li><a class="waves-effect" href="#"><i class="material-icons">account_circle</i>Usuarios</a></li>   

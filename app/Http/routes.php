@@ -64,9 +64,12 @@ Route::post('/medida','MedidasController@guardar');
 
 //mostrar productos
 Route::get('/productos','ProductosController@index');
+Route::get('/producto/{id}','ProductosController@show');
 //nuevo producto
 Route::get('/producto','ProductosController@crear');
 Route::post('/producto','ProductosController@guardar');
 //editar y actualizar una unidad de medida
 Route::get('/producto/{id}/edit','ProductosController@editar');
 Route::post('/producto/{id}/edit','ProductosController@actualizar');
+
+Route::get('/precios','PreciosController@getView');
