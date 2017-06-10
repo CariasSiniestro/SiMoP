@@ -126,11 +126,19 @@ function ActualizarProducto($id){
   } 
   //************************************************************
   
-  $("#cat_sel").change( function() {
-      $('#spinnerProd').removeClass('hide');  
+  $("#cat_sel").change( function() {  
       $('#result').load('/producto/'+$("#cat_sel option:selected").val(),function(){
-          $('#spinnerProd').addClass('hide');
+       
           //$('#content').show();       
       });
   });
   
+  $("#select_tipo_usuario").change( function() {  
+      if($("#select_tipo_usuario option:selected").val()==2){
+          $("#select_departamento").removeClass('hide');
+      }
+      else{
+          $("#select_departamento").addClass('hide');        
+      }
+   
+  });

@@ -23,7 +23,10 @@ class DepartamentosController extends Controller
     }
 
     public function actualizar(Request $request){
-        DB::table('departamentos')->where('id', $request->id)->update(['name' => $request->name]);
+        DB::table('departamentos')->where('id', $request->id)->update([
+                    'name' => $request->name,
+                    'updated_at' => date('Y-m-d h:m:s')
+                    ]);
         return redirect()->intended('/success');
     }
 
@@ -33,8 +36,9 @@ class DepartamentosController extends Controller
     }
 
     public function guardar(Request $request){
-        DB::table('departamentos')->insert([
-            'name' => $request->name
+        DB::table('simopdb.departamentos')->insert([
+            'name' => $request->name,
+            'created_at' => date('Y-m-d h:m:s')
         ]);
         return redirect()->intended('/success');       
     }

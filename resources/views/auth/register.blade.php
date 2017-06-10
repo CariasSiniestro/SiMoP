@@ -1,82 +1,98 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+<div clas="row">
+    <h5>Nuevo usuario</h5>
+</div>
+<div class="divider"></div>
+<div class="row">
+    <div class="col l4 m6 s10 offset-l4 offset-m3 offset-s1">
+        <form  method="POST" action="{{ url('/register') }}">
+        {{ csrf_field() }}
+        <div class="row">
+          <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" name="name" type="text" value="">
+            <label for="name">Nombre</label>
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <i class="material-icons prefix">mail</i>        
+            <input id="email" name="email" type="email" value="">
+            <label for="email">Correo electrónico</label>
+          </div>
+        </div>
+        <div class="row">
+            <!--div class="col l2 m2 s2">
+                <i class="material-icons prefix">account_circle</i>                
+            </div-->
+            <!--div class="col l10 m10 s10"-->
+            <select id="select_tipo_usuario" name="tipo_usuario">
+                <option value="" disabled selected>Elija tipo de usuario</option>
+                <option value="1">Administrador</option>
+                <option value="2">Monitor</option>
+                <!--option value="1">Administrador</option-->   
+            </select>
+            <!--/div-->
+        </div>
+        <div id="select_departamento" class="row hide">
+            <!--div class="col l2 m2 s2">
+                <i class="material-icons prefix">account_circle</i>
+            </div--> 
+            <!--div class="col l10 m10 s10"-->
+            <select id="departamento" name="departamento">     
+                <option value="" disabled selected>Elija departamento</option>
+                @foreach($departamentos as $departamento)
+                <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
+                @endforeach   
+            </select>
+            <!--/div-->                                      
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+        </div>
+        <div class="row">
+            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>         
+                    <input id="email" name="email" type="password" value="">
+                    <label for="email">Contraseña</label>
+                </div>                
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>        
+                    <input id="password-confirm" name="password-confirm" type="password" value="">
+                    <label for="password-confirm">Confirme contraseña</label>
+                </div>                
+                    @if ($errors->has('password_confirmation'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                    @endif
+
+            </div>
+        </div>
+        <div class="row center-align">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+            <i class="material-icons right">send</i>
+          </button>
+        </div>        
+        </form>
     </div>
 </div>
+
 @endsection

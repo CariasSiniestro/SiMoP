@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
+use DB;
 class AuthController extends Controller
 {
     /*
@@ -61,6 +62,10 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
+    protected function showRegisterForm(){
+        $departamentos = DB::table('departamentos')->select('id','name')->get();
+        return view('auth.register')->with('departamentos', $departamentos);
+    }
     protected function create(array $data)
     {
         return User::create([

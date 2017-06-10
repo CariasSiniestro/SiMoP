@@ -1,41 +1,50 @@
-
-
 <div class="row">
-	<div class="col l6 m6">
+  <div class="col l8 m10 s12 offset-l2 offset-m1">
+    <form method="POST" action="{{ url('/precios') }}" name="form" id="form">
+    {{ csrf_field() }}
+    
+            <div class="input-field ">
+              <input  name="id_user" type="hidden" value="{{ Auth::user()->id }}" >
+              <label for="id"></label>
+            </div>    
+    
+    <table class="striped row">
+      <thead>
+        <th data-field="nombre">Producto</th>
+        <th data-field="nombre">Presentación</th> 
+        <th data-field="precio">Precio (Q.)</th>
+      </thead>
+      @foreach($productos as $producto)   
+      <tr>
+          <div class="input-field ">
+            <input  name="id_producto[]" id="id" type="hidden" value="{{ $producto->id }}" >
+            <label for="id"></label>
+          </div>
 
-	</div>
-	<div class="col l6 m6"><br>
-		<!--a class="btn-floating btn-large waves-effect waves-light green "><i class="material-icons">add</i></a-->
-		
-	</div>
-</div>
+          <td width="40%">      
+            <span>{{ $producto->Producto }}</span>                  
+          </td>
 
+          <td width="30%">
+            <span>{{ $producto->Presentacion }}</span>
+          </td>
 
-<div class="row">
-	<div class="col l8 m8 s12 offset-l2 offset-m2">
-<table>
-	<thead>
-		<th>ID</th>
-		<th>Nombre</th>	
-		<th>Acciones</th>
-	</thead>
-	<tbody>
-		@foreach($productos as $producto)
-		<tr>
-			<td>{{ $producto->id }}</td>
-			<td>{{ $producto->name }}</td>
-			<td>
+          <td width="30%">
+             <div class="input-field">
+               <input  name="precio[]" id="precio" type="number" step="0.1">
+               <label for="id"></label>
+             </div>                             
+          </td>
 
-				<a href="#!" onClick="ActualizarProducto({{$producto->id}})"><i class="material-icons">edit</i></a>	
-				<a href="#"><i class="material-icons red-text">delete</i></a>
-			</td>			
-		</tr>
-		@endforeach
-	</tbody>
-</table>
+      </tr>
+      @endforeach    
+    </table> 
+    <div class="row center-align">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+                   <i class="material-icons right">send</i>
+            </button>
+    </div>
 
-    @if(!$productos)
-    <h5>No data to display!!</h5>
-    @endif
-	</div>
+    </form>
+  </div>
 </div>

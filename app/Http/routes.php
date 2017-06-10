@@ -16,7 +16,8 @@
 });
 */
 Route::auth();
-
+Route::get('/register','Auth\AuthController@showRegisterForm');
+Route::post('/register','Auth\AuthController@create');
 
 Route::get('/success',function(){
 	return view('success');
@@ -29,18 +30,18 @@ Route::get('/showcategorias', 'CategoriasController@ShowSelect');
 
 
 Route::group(['middleware' => 'auth'],function(){
-//ver los departamentos
-Route::get('/departamentos','DepartamentosController@index');
-//editar y actualizar un departamento
-Route::get('/departamento/{id}/edit','DepartamentosController@editar');
-Route::post('/departamento/{id}/edit','DepartamentosController@actualizar');
-//nuevo departamento
-Route::get('/departamento','DepartamentosController@crear');
-Route::post('/departamento','DepartamentosController@guardar');
+
 });
 
 
-
+	//ver los departamentos
+	Route::get('/departamentos','DepartamentosController@index');
+	//editar y actualizar un departamento
+	Route::get('/departamento/{id}/edit','DepartamentosController@editar');
+	Route::post('/departamento/{id}/edit','DepartamentosController@actualizar');
+	//nuevo departamento
+	Route::get('/departamento','DepartamentosController@crear');
+	Route::post('/departamento','DepartamentosController@guardar');
 
 //mostras las categorias
 Route::get('/categorias','CategoriasController@index');
@@ -64,12 +65,14 @@ Route::post('/medida','MedidasController@guardar');
 
 //mostrar productos
 Route::get('/productos','ProductosController@index');
-Route::get('/producto/{id}','ProductosController@showPorCategoria');
+Route::get('/producto/{id}','ProductosController@showPorCategoria');//productos por categoria
 //nuevo producto
 Route::get('/producto','ProductosController@crear');
 Route::post('/producto','ProductosController@guardar');
-//editar y actualizar una unidad de medida
+//editar y actualizar un producto
 Route::get('/producto/{id}/edit','ProductosController@editar');
 Route::post('/producto/{id}/edit','ProductosController@actualizar');
 
-Route::get('/precios','PreciosController@getView');
+
+Route::get('/precios','PreciosController@getView');// devuelve el formulario
+Route::post('/precios','PreciosController@storeGroup');//Guarda un conjunto de valores de precio
