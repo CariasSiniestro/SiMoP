@@ -15,17 +15,17 @@ class ProductosController extends Controller
     	/*$productos = DB::table('productos')->select('id','name','id_categoria','id_medida')->get();
     	*/
         $productos = DB::select("
-                               SELECT  P.id,P.name AS Pname,UM.name AS UMname,C.name AS Cname
-                                FROM productos P
-                                INNER JOIN unidad_medida UM 
+                               SELECT  P.id, P.name AS Pname,UM.name AS UMname,C.name AS Cname
+                                FROM simopdb.productos P
+                                INNER JOIN simopdb.unidad_medida UM 
                                 ON 
                                 P.id_medida = UM.id
-                                INNER JOIN categorias C 
+                                INNER JOIN simopdb.categorias C 
                                 ON
                                 P.id_categoria = C.id
                                 ORDER BY (C.name)
                                 ");
-            
+           
        return view('ListProductos')->with('productos',$productos);
     }
 
@@ -33,11 +33,11 @@ class ProductosController extends Controller
     public function showPorCategoria($id){
         $productos = DB::select("
                             SELECT  P.id,P.name AS Producto,UM.name AS Presentacion
-                                FROM productos P
-                                INNER JOIN unidad_medida UM 
+                                FROM simopdb.productos P
+                                INNER JOIN simopdb.unidad_medida UM 
                                 ON 
                                 P.id_medida = UM.id
-                                INNER JOIN categorias C 
+                                INNER JOIN simopdb.categorias C 
                                 ON
                                 P.id_categoria = C.id
                                 AND
@@ -52,8 +52,8 @@ class ProductosController extends Controller
 
 //muestra el form. para nuevo producto
     public function crear(){
-    	$categorias = DB::table('categorias')->select('id','name')->get();
-    	$medidas = DB::table('unidad_medida')->select('id','name')->get();
+    	$categorias = DB::table('simopdb.categorias')->select('id','name')->get();
+    	$medidas = DB::table('simopdb.unidad_medida')->select('id','name')->get();
     	return view('NuevoProducto')->with('categorias',$categorias)->with('medidas',  $medidas);
         //dd(date('Y-m-d h:m:s'));
     }
@@ -61,7 +61,7 @@ class ProductosController extends Controller
 //guarda el nuevo producto en la BD
 	public function guardar(Request $request){
 		
-		DB::table('productos')->insert([
+		DB::table('simopdb.productos')->insert([
 			'name' => $request->name,
 			'id_categoria' => $request->categoria,			
 			'id_medida' => $request->medida,
@@ -74,9 +74,9 @@ class ProductosController extends Controller
 	}
 
     public function editar($id){
-      	$categorias = DB::table('categorias')->select('id','name')->get();
-    	$medidas = DB::table('unidad_medida')->select('id','name')->get();
-    	$producto = DB::table('productos')->select('name','id','id_categoria','id_medida')->where('id','=',$id)->get();
+      	$categorias = DB::table('simopdb.categorias')->select('id','name')->get();
+    	$medidas = DB::table('simopdb.unidad_medida')->select('id','name')->get();
+    	$producto = DB::table('simopdb.productos')->select('name','id','id_categoria','id_medida')->where('id','=',$id)->get();
         return View::make('EditProducto')->with('producto',$producto)
         								 ->with('categorias',$categorias)
         								 ->with('medidas',$medidas);    	
@@ -84,7 +84,7 @@ class ProductosController extends Controller
 
     public function actualizar(Request $request){
  
-    		DB::table('productos')->where('id',$request->id)->update([
+    		DB::table('simopdb.productos')->where('id',$request->id)->update([
     			'name'=> $request->name,
     			'id_categoria'=> $request->categoria,
     			'id_medida'=> $request->medida,

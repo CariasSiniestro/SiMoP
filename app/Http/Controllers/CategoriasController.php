@@ -12,13 +12,13 @@ class CategoriasController extends Controller
 {
     //
     public function index(){
- 		$categorias = DB::table('categorias')->select('id','name')->get(); 
+ 		$categorias = DB::table('simopdb.categorias')->select('id','name')->get(); 
  		return View::make('layouts.ListCategorias')->with('categorias',$categorias);  	
     }
 
     public function ShowSelect(){
-    	$categorias = DB::table('categorias')->select('id','name')->get();
-    	$departamentos = DB::table('departamentos')->select('id','name')->orderBy('name', 'asc')->get();
+    	$categorias = DB::table('simopdb.categorias')->select('id','name')->get();
+    	$departamentos = DB::table('simopdb.departamentos')->select('id','name')->orderBy('name', 'asc')->get();
     	//return View::make('layouts.ViewCategorias')->with('categorias', $categorias);
     	return View::make('layouts.ViewCategorias')
     					->with('categorias', $categorias)
@@ -26,12 +26,12 @@ class CategoriasController extends Controller
     }
 
     public function editar($id){
-    	$categoria = DB::table('categorias')->select('name','id')->where('id','=',$id)->get();
+    	$categoria = DB::table('simopdb.categorias')->select('name','id')->where('id','=',$id)->get();
         return View::make('EditCategoria')->with('categoria',$categoria);    	
     }
 
     public function actualizar(Request $request){
-        DB::table('categorias')->where('id', $request->id)->update(['name' => $request->name]);
+        DB::table('simopdb.categorias')->where('id', $request->id)->update(['name' => $request->name]);
         return redirect()->intended('/success');   	
     }
 
@@ -40,8 +40,9 @@ class CategoriasController extends Controller
     }
 
     public function guardar(Request $request){
-        DB::table('categorias')->insert([
-            'name' => $request->name
+        DB::table('simopdb.categorias')->insert([
+            'name' => $request->name,
+            'created_at' => date('Y-m-d h:m:s')
         ]);
         return redirect()->intended('/success');  
     }

@@ -1,0 +1,2 @@
+user oracle=prueba
+pass= 12345

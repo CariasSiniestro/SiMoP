@@ -28,9 +28,9 @@
 	<tbody>
 		@foreach($productos as $producto)
 		<tr>
-			<td>{{ $producto->Pname }}</td>
-			<td>{{ $producto->UMname }}</td>
-			<td>{{ $producto->Cname }}</td>
+			<td>{{ $producto->pname }}</td>
+			<td>{{ $producto->umname }}</td>
+			<td>{{ $producto->cname }}</td>
 			<td>
 
 				<a href="#!" onClick="ActualizarProducto({{$producto->id}})"><i class="material-icons">edit</i></a>	

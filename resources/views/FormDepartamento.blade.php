@@ -8,6 +8,10 @@
 <div class="row">
   <form method="POST" action="/departamento">
     {{ csrf_field() }}
+            <div class="input-field ">
+              <input  name="id_user" type="hidden" value="{{ Auth::user()->id }}" >
+              <label for="id"></label>
+            </div>    
     <div class="col l6 m6 s12 offset-l3 offset-m3">
     <div class="divider"></div> <br> 
 

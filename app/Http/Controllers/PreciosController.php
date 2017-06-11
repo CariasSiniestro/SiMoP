@@ -16,8 +16,8 @@ class PreciosController extends Controller
 
 //devuelve el formulario para seleccionar la categoria para ingreso de precios
     public function getView(){
-    	$categorias = DB::table('categorias')->select('id', 'name')->get();
-    	$departamento = DB::table('departamentos')->select('id', 'name')->where('id',Auth::user()->departamento_id)->get();
+    	$categorias = DB::table('simopdb.categorias')->select('id', 'name')->get();
+    	$departamento = DB::table('simopdb.departamentos')->select('id', 'name')->where('id',Auth::user()->departamento_id)->get();
     	return view('IngresoPrecios')->with('categorias',$categorias)
     								->with('departamento',$departamento);
     	//dd($departamento);
@@ -31,7 +31,7 @@ class PreciosController extends Controller
         $productos = $request ->get('id_producto', []);
         
         for ($i=0; $i < (sizeof($request->precio)) ; $i++) { 
-            DB::table('precios_data')->insert([
+            DB::table('simopdb.precios_data')->insert([
                 'id_producto' => $productos[$i],
                 'precio' => $precios[$i],
                 'id_usuario' => $id_user,

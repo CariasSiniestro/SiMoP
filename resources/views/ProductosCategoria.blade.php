@@ -22,11 +22,11 @@
           </div>
 
           <td width="40%">      
-            <span>{{ $producto->Producto }}</span>                  
+            <span>{{ $producto->producto }}</span>                  
           </td>
 
           <td width="30%">
-            <span>{{ $producto->Presentacion }}</span>
+            <span>{{ $producto->presentacion }}</span>
           </td>
 
           <td width="30%">
