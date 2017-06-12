@@ -6,10 +6,10 @@
 
 
 
- function CargarPanelPrecios(){ 	
+ function CargarPanelPrecios($id_user){ 	
     $('#spinner').removeClass('hide');
     $('#content').hide();
-    $('#content').load('/showcategorias',function(){
+    $('#content').load('/precios/'+$id_user+'/user',function(){
           $('#spinner').addClass('hide');
           $('#content').show();     	
     });
@@ -18,10 +18,14 @@
   }
 
 function ResultPrecios(){
-    /*$('#result').load('/categorias',function(){
+    $('#spinner').removeClass('hide');
+    $('#content').hide();
+    $id_depto=$("#select_depto option:selected").val();
+    $('#result').load('/precios/'+$id_depto+'/departamento',function(){
           $('#spinner').addClass('hide');
-          $('#content').show();       
-    });  */
+          $('#content').show();        
+    });
+
 }
 
   function CargarDepartamentos(){  
@@ -133,12 +137,13 @@ function ActualizarProducto($id){
       });
   });
   
-  $("#select_tipo_usuario").change( function() {  
-      if($("#select_tipo_usuario option:selected").val()==2){
-          $("#select_departamento").removeClass('hide');
+  $("#rol").change( function() {  
+
+      if($("#rol option:selected").val()==2){
+        $('#select_departamento').removeClass('hide');
       }
       else{
-          $("#select_departamento").addClass('hide');        
+       $('#select_departamento').addClass('hide');  
       }
    
   });

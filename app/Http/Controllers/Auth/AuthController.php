@@ -41,6 +41,8 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -63,7 +65,7 @@ class AuthController extends Controller
      * @return User
      */
     protected function showRegisterForm(){
-        $departamentos = DB::table('departamentos')->select('id','name')->get();
+        $departamentos = DB::table('simopdb.departamentos')->select('id','name')->get();
         return view('auth.register')->with('departamentos', $departamentos);
     }
     protected function create(array $data)

@@ -45,31 +45,32 @@
     <li><div class="divider"></div></li>
     <!--li><a class="subheader">Subheader</a></li-->
     <li><a class="waves-effect" href="{{ url('/') }}"><i class="material-icons">home</i>Principal</a></li>
-    <li><a class="waves-effect" onClick="CargarPanelPrecios()" href="#"><i class="material-icons">attach_money</i>Precios</a></li>
-    <li><a class="waves-effect" href="#"><i class="material-icons">date_range</i>Historico</a></li>     
+    <li><a class="waves-effect"  href="{{url('/consultaprecios')}}"><i class="material-icons">attach_money</i>Consulta de Precios</a></li>   
+
+
+
+      @if(Auth::check())
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
             <a class="collapsible-header">Catálogo<i class="material-icons">arrow_drop_down</i></a>
             <div class="collapsible-body">
               <ul>
+
+                @if((Auth::user()->role)==1)        
+                <li><a class="waves-effect" href="{{url('/usuarios')}}"><i class="material-icons">account_circle</i>Usuarios</a></li>       
                 <li><a class="waves-effect" onClick="CargarDepartamentos()" href="#"><i class="material-icons">place</i>departamentos</a></li> 
                 <li><a class="waves-effect" onClick="CargarCategorias()" href="#"><i class="material-icons">list</i>Categorias</a></li>
                 <li><a class="waves-effect" onClick="CargarPresentaciones()" href="#"><i class="material-icons">shopping_basket</i>Presentaciones</a></li>        
                 <li><a class="waves-effect" href="{{ url('/productos') }}"><i class="material-icons">shopping_cart</i>Productos</a></li> 
-                <li><a class="waves-effect" href="{{ url('/precios') }}"><i class="material-icons">attach_money</i>Precios</a></li>              
-                @if(Auth::check())
-                @if((Auth::user()->role)==1)
-                <li><a class="waves-effect" href="#"><i class="material-icons">account_circle</i>Usuarios</a></li>   
-                @endif
-                @endif
+                @endif      
+                <li><a class="waves-effect" onClick="CargarPanelPrecios({{ Auth::user()->id }})" href="#"><i class="material-icons">attach_money</i>Ingresar Precios</a></li>              
+                  
               </ul>
             </div>
           </li>
         </ul>
       </li>
-
-     @if(Auth::check())
      <li><a class="waves-effect" href="{{ url('/logout') }}"><i class="material-icons">call_missed</i>salir</a></li>
      @endif
     <li><div class="divider"></div></li>

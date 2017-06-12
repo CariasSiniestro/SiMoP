@@ -16,15 +16,17 @@
 });
 */
 Route::auth();
-Route::get('/register','Auth\AuthController@showRegisterForm');
-Route::post('/register','Auth\AuthController@create');
+
+
+Route::get('/usuarios', 'NuevosUsuariosController@index');
+Route::get('/newuser','NuevosUsuariosController@getRegister');
+Route::post('/newuser','NuevosUsuariosController@register');
 
 Route::get('/success',function(){
 	return view('success');
 });
 
 Route::get('/', 'HomeController@index');
-Route::get('/showcategorias', 'CategoriasController@ShowSelect');
 //Route::get('/main', 'HomeController@GetMain');
 
 
@@ -76,3 +78,7 @@ Route::post('/producto/{id}/edit','ProductosController@actualizar');
 
 Route::get('/precios','PreciosController@getView');// devuelve el formulario
 Route::post('/precios','PreciosController@storeGroup');//Guarda un conjunto de valores de precio
+Route::get('/precios/{id}/departamento','PreciosController@index');//muestra los precios promedio
+Route::get('/precios/{id}/user','PreciosController@preciosUser');
+
+Route::get('/consultaprecios','PreciosController@ViewConsulta');

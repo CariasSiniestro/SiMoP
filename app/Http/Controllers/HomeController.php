@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use View;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -25,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $departamentos=DB::table('simopdb.departamentos')->select('id', 'name')->get();
+        return view('welcome')->with('departamentos', $departamentos);
     }
  
         

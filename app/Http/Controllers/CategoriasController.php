@@ -47,4 +47,5 @@ class CategoriasController extends Controller
         return redirect()->intended('/success');  
     }
 
+
 }

@@ -1,3 +1,5 @@
+
+
 <div class="row">
   <div class="col l8 m10 s12 offset-l2 offset-m1">
     <form method="POST" action="{{ url('/precios') }}" name="form" id="form">
@@ -31,7 +33,7 @@
 
           <td width="30%">
              <div class="input-field">
-               <input  name="precio[]" id="precio" type="number" step="0.1">
+               <input  name="precio[]" id="precio" type="number" step="0.01">
                <label for="id"></label>
              </div>                             
           </td>
@@ -48,3 +50,4 @@
     </form>
   </div>
 </div>
+
